@@ -117,12 +117,72 @@ class Game(val gameId: String) {
         var winner2: Int = 0
         for (row in 0 until 4) {
             for (col in 0 until 4) {
+                winner1 = 0
+                winner2 = 0
+                // c левого верхнего угла
                 for (i in 0 until 4) {
                     if (field[row + i][col + i] == 1 && field[row + i + 1][col + i + 1] == 1) {
                         winner1++
                         winner2 = 0
                     }
-                    if (field[row + i][col + i] == 2 && field[row + i + 1][col + i + 1] == 2) {
+                    else if (field[row + i][col + i] == 2 && field[row + i + 1][col + i + 1] == 2) {
+                        winner2++
+                        winner1 = 0
+                    } else if(winner1 != 4 && winner2 != 4) {
+                        winner1 = 0
+                        winner2 = 0
+                    }
+                }
+                // 4 одинаковых символ + символ (col + 1) = 5 символов по факту
+                if (winner1 == 4) return playerId1
+                if (winner2 == 4) return playerId2
+                winner1 = 0
+                winner2 = 0
+                // с правого верхнего угла
+                for (i in 0 until 4) {
+                    if (field[row + i][col + 4 - i] == 1 && field[row + i + 1][col + 4 - i - 1] == 1) {
+                        winner1++
+                        winner2 = 0
+                    }
+                    else if (field[row + i][col + 4 - i] == 2 && field[row + i + 1][col + 4 - i - 1] == 2) {
+                        winner2++
+                        winner1 = 0
+                    } else if(winner1 != 4 && winner2 != 4) {
+                        winner1 = 0
+                        winner2 = 0
+                    }
+                }
+                // 4 одинаковых символ + символ (col + 1) = 5 символов по факту
+                if (winner1 == 4) return playerId1
+                if (winner2 == 4) return playerId2
+                winner1 = 0
+                winner2 = 0
+                // с правого нижнего угла
+                for (i in 0 until 4) {
+                    if (field[row + 4 - i][col + 4 - i] == 1 && field[row + 4 - i - 1][col + 4 - i - 1] == 1) {
+                        winner1++
+                        winner2 = 0
+                    }
+                    else if (field[row + 4 - i][col + 4 - i] == 2 && field[row + 4 - i - 1][col + 4 - i - 1] == 2) {
+                        winner2++
+                        winner1 = 0
+                    } else if(winner1 != 4 && winner2 != 4) {
+                        winner1 = 0
+                        winner2 = 0
+                    }
+                }
+                // 4 одинаковых символ + символ (col + 1) = 5 символов по факту
+                if (winner1 == 4) return playerId1
+                if (winner2 == 4) return playerId2
+                winner1 = 0
+                winner2 = 0
+                // с левого нижнего угла
+                for (i in 0 until 4) {
+                    if (field[row + 4 - i][col + i] == 1 && field[row + 4 - i - 1][col + i + 1] == 1) {
+                        winner1++
+                        winner2 = 0
+                    }
+                    else if (field[row + 4 - i][col + i] == 2 && field[row + 4 - i - 1][col + i + 1] == 2) {
                         winner2++
                         winner1 = 0
                     } else if(winner1 != 4 && winner2 != 4) {
